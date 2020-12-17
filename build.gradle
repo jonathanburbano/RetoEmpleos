@@ -1,0 +1,48 @@
+//este bloque es para la configuracion de buildscript
+buildscript {
+	repositories{
+		mavenLocal()
+		mavenCentral()
+		jcenter()
+		
+	}		
+	dependencies{
+	classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.80")
+	}
+} 
+
+
+plugins {
+   
+    id 'java-library'
+ 
+
+}
+apply { plugin    'net.serenity-bdd.aggregator'
+}
+//de donde viene las dependencias del cogido fuente del proyecto
+repositories {
+   mavenLocal()
+   mavenCentral()
+    jcenter()
+}
+dependencies {
+   //dependencias para automatizar en serenity
+   implementation 'net.serenity-bdd:serenity-junit:2.0.80'
+   implementation 'net.serenity-bdd:serenity-cucumber:1.9.45'
+   implementation 'net.serenity-bdd:serenity-core:2.0.80'
+   implementation 'org.slf4j:slf4j-simple:1.7.7'
+   implementation 'com.google.guava.guava:23.0'
+   
+ }
+ 
+ test{
+ ignoreFailures=true
+ 
+ }
+ // configurar el encoding del pryecto 
+tasks.withType(JavaCompile) {
+ 	options.encoding = 'UTF-8'
+ }	
+
+ gradle.startParameter.continueOnFailure = true
